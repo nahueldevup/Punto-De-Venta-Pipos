@@ -11,11 +11,11 @@
 - [Características](#características)
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
+- [Ejecución/Instalación con Docker](#opción-alternativa-ejecución-con-docker)
 - [Testing y Calidad](#testing-y-calidad)
 - [CI/CD](#cicd)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Tecnologías](#tecnologías)
-
 ---
 
 ## Características
@@ -129,7 +129,24 @@ npm run dev
 # Para producción
 npm run build
 ```
+## Opción Alternativa: Ejecución con Docker
 
+Si prefieres usar Docker en lugar de instalar dependencias manualmente:
+
+1. **Copiar entorno:**
+```bash
+   cp .env.example .env
+```
+2. **Iniciar contenedores:**
+```bash
+   docker-compose up -d
+```
+3. **Instalar dependencias (dentro del contenedor):**
+```bash
+docker-compose exec app composer install
+docker-compose exec app npm install && npm run build
+docker-compose exec app php artisan migrate --seed
+```
 ### 8. Iniciar el Servidor
 
 ```bash
