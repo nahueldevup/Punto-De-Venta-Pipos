@@ -1,22 +1,21 @@
 # Sistema POS - Punto de Venta
 
-
 >  **Trabajo Final Integrador** - Metodología de Sistemas II  
 >  **Comisión 2.2**
->  **Integrantes:Jennifer Coronel-Nahuel Espinola**
+>  **Integrantes: Jennifer Coronel - Nahuel Espinola**
 
 ---
 
 ## Tabla de Contenidos
 
-- [Características](#-características)
-- [Requisitos](#-requisitos)
-- [Instalación](#-instalación)
-- [Configuración](#-configuración)
-- [Testing y Calidad](#-testing-y-calidad)
-- [CI/CD](#-cicd)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Tecnologías](#-tecnologías)
+- [Características](#características)
+- [Requisitos](#requisitos)
+- [Instalación](#instalación)
+- [Testing y Calidad](#testing-y-calidad)
+- [CI/CD](#cicd)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Tecnologías](#tecnologías)
+
 ---
 
 ## Características
@@ -62,6 +61,7 @@
 - **MySQL**: 8.4+ / MariaDB
 - **Composer**: 2.x
 - **Node.js**: 22.x+ & NPM
+
 ---
 
 ## Instalación
@@ -79,6 +79,7 @@ cd Punto-De-Venta-Pipos
 composer install
 npm install && npm run build
 ```
+
 ### 3. Configurar Variables de Entorno
 
 ```bash
@@ -108,7 +109,7 @@ CREATE DATABASE mi_pos_4;
 exit;
 ```
 
-### 7. Ejecutar Migraciones y Seeders
+### 6. Ejecutar Migraciones y Seeders
 
 ```bash
 php artisan migrate --seed
@@ -119,7 +120,7 @@ Esto creará:
 - Un usuario de prueba: `test@example.com` / `password`
 - Configuración inicial del sistema
 
-### 8. Compilar Assets
+### 7. Compilar Assets
 
 ```bash
 # Para desarrollo
@@ -129,17 +130,18 @@ npm run dev
 npm run build
 ```
 
-### 9. Iniciar el Servidor
+### 8. Iniciar el Servidor
 
 ```bash
-#usando npm (Laravel + Vite simultáneamente)
+# Usando npm (Laravel + Vite simultáneamente)
 npm run serve
 ```
 
 Accede a: **http://localhost:8000**
 
 ---
-## Testing
+
+## Testing y Calidad
 
 ### Ejecutar Tests
 
@@ -167,7 +169,9 @@ tests/
     ├── SaleTest.php
     └── ProductControllerTest.php
 ```
-### Ejecutar Laravel Pint(formateador)
+
+### Ejecutar Laravel Pint (formateador)
+
 Utilizamos Laravel Pint para mantener el estilo de código limpio y estandarizado.
 
 ```bash
@@ -180,13 +184,15 @@ Utilizamos Laravel Pint para mantener el estilo de código limpio y estandarizad
 
 ### Pipeline Automatizado
 
-El proyecto utiliza GitHub Actions para integración continua. Cada vez que se realiza un push a la rama main, se ejecuta automáticamente el archivo .github/workflows/laravel.yml que:
+El proyecto utiliza GitHub Actions para integración continua. Cada vez que se realiza un push a la rama main, se ejecuta automáticamente el archivo `.github/workflows/laravel.yml` que:
 
 1. Instala el entorno PHP y dependencias.
 2. Ejecuta la suite de tests completa.
 3. Verifica la integridad del código.
 
-##  Estructura del Proyecto
+---
+
+## Estructura del Proyecto
 
 ```
 Punto-De-Venta-Pipos/
@@ -233,7 +239,7 @@ Punto-De-Venta-Pipos/
 
 ### Frontend
 - **CSS Framework**: Tailwind CSS 3
-- **Blade**
+- **Templates**: Blade
 - **Build Tool**: Vite
 - **Icons**: Emoji / Lucide
 - **JavaScript**: Alpine.js (via Livewire)
@@ -242,4 +248,5 @@ Punto-De-Venta-Pipos/
 - **CI/CD**: GitHub Actions
 - **Calidad**: Laravel Pint
 - **Version Control**: Git + Conventional Commits
+
 ---
