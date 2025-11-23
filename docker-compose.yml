@@ -1,14 +1,44 @@
 version: '3.8'
 
 services:
+  app:
+    image: bitnami/laravel:latest
+    container_name: pipos_app
+    user: root # Soluciona problemas de permisos en Windows/Linux
+    ports:
+      - "${APP_PORT:-8000}:8000"
+      - "5173:5173"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=mi_pos_4
+      - LARAVEL_BYPASS_CONFIRMATION=1
+    volumes:
+      - ./:/app
+    depends_on:
+      - mysql
+    # ESTE COMANDO HACE LA MAGIA:
+    # 1. Instala dependencias si faltan
+    # 2. Espera a que la base de datos esté lista
+    # 3. Corre las migraciones automáticamente
+    # 4. Levanta el servidor
+    command: >
+      sh -c "composer install --ignore-platform-reqs &&
+             php artisan migrate --force &&
+             php artisan serve --host=0.0.0.0 --port=8000"
+
   mysql:
     image: mysql:8.0
     container_name: pos_mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mi_pos_4
     ports:
-      - "3306:3306"
+      # Si existe la variable DB_PORT úsala, si no, usa el 3306 por defecto
+      - "${FORWARD_DB_PORT:-3306}:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 

@@ -143,15 +143,15 @@ Si prefieres usar Docker en lugar de instalar dependencias manualmente:
 ```
 3. **Instalar dependencias (dentro del contenedor):**
 ```bash
-docker-compose exec app composer install
 docker-compose exec app npm install && npm run build
+docker-compose exec app php artisan key:generate
 docker-compose exec app php artisan migrate --seed
 ```
 ### 8. Iniciar el Servidor
 
 ```bash
 # Usando npm (Laravel + Vite simultáneamente)
-npm run serve
+docker-compose exec app npm run dev
 ```
 
 Accede a: **http://localhost:8000**
